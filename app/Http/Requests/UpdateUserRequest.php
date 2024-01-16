@@ -24,8 +24,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'string|max:255',
-            'email' => 'string|required|max:255|email|unique:users,email,' . $this->user->id,
-            'password' => 'string|required|min:8|confirmed',
+            'email' => 'string|max:255|email|unique:users,email,' . $this->user->id,
         ];
     }
 }

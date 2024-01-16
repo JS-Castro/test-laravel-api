@@ -18,20 +18,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('users')
     ->name('users.')
-    ->middleware('auth:api')
+    ->middleware('auth:sanctum')
     ->group(function () {
-        // Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/{user}', [UserController::class, 'show'])->name('show');
         Route::put('/{user}', [UserController::class, 'update'])->name('update');
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
     });
+
+// Route::get('/', [UserController::class, 'index'])->name('index');
 
 // creates new user
 Route::post('users', [UserController::class, 'store'])->name('store');
 
 // Authenticaion
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::get('/confirm-password', function () {
     return view('auth.confirm-password');
